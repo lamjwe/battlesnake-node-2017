@@ -9,6 +9,8 @@ var logger = require('morgan')
 var app = express()
 var routes = require('./routes')
 
+// const addon = require('./build/Release/addon');
+
 // For deployment to Heroku, the port needs to be set using ENV, so
 // we check for the port number in process.env
 app.set('port', (process.env.PORT || 9001))
