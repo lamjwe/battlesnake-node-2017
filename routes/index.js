@@ -1,6 +1,6 @@
 var express = require('express')
 var router  = express.Router()
-// const addon = require('../build/Release/addon');
+const addon = require('../build/Release/addon');
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
   // NOTE: Do something here to start the game
@@ -20,7 +20,7 @@ router.post('/start', function (req, res) {
 router.post('/move', function (req, res) {
   // NOTE: Do something here to generate your move
   // debugger;
-  // console.log('This should be eight:', addon.add(3, 5));
+  console.log('This should be eight:', addon.add(3, 5));
   // Response data
   var data = {
     move: 'up', // one of: ['up','down','left','right']
