@@ -48,8 +48,8 @@ router.post('/move', function (req, res) {
 
   console.log("BODY: " + JSON.stringify(req["body"]))
 
-  console.log('This should be 3:', addon.cppaddon(3));
-  console.log('This should be 5:', addon.cppaddon(5));
+  // console.log('This should be 3:', addon.cppaddon(3));
+  // console.log('This should be 5:', addon.cppaddon(5));
 
   battle_snake_data.push(boardx);
   battle_snake_data.push(boardy);
@@ -77,7 +77,9 @@ router.post('/move', function (req, res) {
       battle_snake_data.push(food[1])
   })
 
-  console.log("SNAKE DATA TO SEND TO C++ ADDON : " + battle_snake_data.toString().replace(",", ""))
+  console.log("SNAKE DATA TO SEND TO C++ ADDON : " + battle_snake_data.toString().replace(/,/g , " "))
+
+  console.log('This should be 3:', addon.cppaddon());
 
   // Response data
   var data = {

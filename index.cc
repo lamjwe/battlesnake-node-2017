@@ -1,6 +1,8 @@
 // addon.cc
 #include <node.h>
 #include <string>
+#include <iostream>
+
 namespace demo {
 
 using v8::Exception;
@@ -26,20 +28,24 @@ void CPPAddon(const FunctionCallbackInfo<Value>& args) {
     return;
   }
 
-  // Check the argument types
-  if (!args[0]->IsNumber()) {
-    isolate->ThrowException(Exception::TypeError(
-        String::NewFromUtf8(isolate, "Wrong arguments")));
-    return;
-  }
+  // // Check the argument types
+  // if (!args[0]->IsNumber()) {
+  //   isolate->ThrowException(Exception::TypeError(
+  //       String::NewFromUtf8(isolate, "Wrong arguments")));
+  //   return;
+  // }
 
   // Perform the operation
-  double value = args[0]->NumberValue();
-  Local<Number> num = Number::New(isolate, value);
+  // char* value = args[0]->ToString();
+  // Local<Number> num = Number::New(isolate, value); // Local<string>?
+
+  // FROM http://stackoverflow.com/questions/16613828/how-to-convert-stdstring-to-v8s-localstring#16639079
+  v8::String::Utf8Value value(args[0]->ToString());
+  std::string out_input = std::string(*value);
 
   // Set the return value (using the passed in
   // FunctionCallbackInfo<Value>&)
-  args.GetReturnValue().Set(num);
+  args.GetReturnValue().Set(our_value);
 }
 
 void Init(Local<Object> exports) {
