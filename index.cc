@@ -2,7 +2,7 @@
 #include <node.h>
 #include <string>
 #include <iostream>
-
+#include <sstream>
 namespace demo {
 
 using v8::Exception;
