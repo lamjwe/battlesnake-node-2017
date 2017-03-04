@@ -41,11 +41,12 @@ void CPPAddon(const FunctionCallbackInfo<Value>& args) {
 
   // FROM http://stackoverflow.com/questions/16613828/how-to-convert-stdstring-to-v8s-localstring#16639079
   v8::String::Utf8Value value(args[0]->ToString());
-  char out_input[] = *value;
+  std::string out_input = std::string(*value);
 
+  std::cout << "OUR OUTPUT : " << out_input;
   // Set the return value (using the passed in
   // FunctionCallbackInfo<Value>&)
-  args.GetReturnValue().Set(String::NewFromUtf8(isolate, out_input));
+  args.GetReturnValue().Set(String::NewFromUtf8(isolate, "TEST"));
 }
 
 void Init(Local<Object> exports) {
