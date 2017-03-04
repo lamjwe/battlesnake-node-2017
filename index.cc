@@ -45,7 +45,7 @@ void CPPAddon(const FunctionCallbackInfo<Value>& args) {
 
   // Set the return value (using the passed in
   // FunctionCallbackInfo<Value>&)
-  args.GetReturnValue().Set(our_value);
+  args.GetReturnValue().Set(out_input);
 }
 
 void Init(Local<Object> exports) {
