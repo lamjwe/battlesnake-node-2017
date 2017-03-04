@@ -41,7 +41,7 @@ void CPPAddon(const FunctionCallbackInfo<Value>& args) {
 
   // FROM http://stackoverflow.com/questions/16613828/how-to-convert-stdstring-to-v8s-localstring#16639079
   v8::String::Utf8Value value(args[0]->ToString());
-  std::string out_input = std::string(*value);
+  char out_input[] = std::string(*value);
 
   // Set the return value (using the passed in
   // FunctionCallbackInfo<Value>&)
