@@ -45,7 +45,7 @@ void CPPAddon(const FunctionCallbackInfo<Value>& args) {
 
   // Set the return value (using the passed in
   // FunctionCallbackInfo<Value>&)
-  args.GetReturnValue().Set(String::NewFromUtf8(out_input));
+  args.GetReturnValue().Set(String::NewFromUtf8(isolate, out_input));
 }
 
 void Init(Local<Object> exports) {
