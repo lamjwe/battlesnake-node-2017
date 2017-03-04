@@ -9,7 +9,10 @@ var addon_path = path.join(__dirname, "/../build/Release/cppaddon");
 const acc = worker(addon_path);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 // Handle POST request to '/start'
