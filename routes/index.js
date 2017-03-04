@@ -26,8 +26,45 @@ router.post('/start', function (req, res) {
 // Handle POST request to '/move'
 router.post('/move', function (req, res) {
   // NOTE: Do something here to generate your move
-  // debugger;
-  console.log('This should be eight:', addon.add(3, 5));
+  // var boardx = req["body"]["width"]
+  // var boardy = req["body"]["height"]
+
+  // var snakes_alive = req["body"]["snakes"].length - req["body"]["dead_snakes"].length
+
+  // var snakes = req["body"]["snakes"]
+  // var you;
+  // snakes.forEach(function (snake) {
+  //   if (snake["id"] == req["body"]["you"]) {
+  //     you = snake
+  //   }
+  // })
+
+  // var your_length = you["coords"].length
+  // var your_health = you["health_points"]
+
+  // console.log("BOARDX: " + boardx)
+  // console.log("BOARDY: " + boardy)
+  // console.log("snakes_alive: " + snakes_alive)
+  // console.log("snakes: " + JSON.stringify(snakes))
+  
+  // console.log("you: " + JSON.stringify(you))
+  // console.log("your_length: " + your_length)
+  // console.log("your_health: " + your_health)
+
+  // console.log("BODY: " + JSON.stringify(req["body"]))
+  
+
+  var input = acc.to.stream("value",
+	function () {
+		acc.to.emit('value', -1);
+	});
+
+  streamify([1, 2, 3, 4, 5, 6]).pipe(input);
+
+  acc.from.on('TEST', function(value){
+      console.log("Accumulated Sum:  " + value);
+  });
+
   // Response data
   var data = {
     move: 'up', // one of: ['up','down','left','right']

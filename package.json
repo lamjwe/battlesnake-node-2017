@@ -3,6 +3,7 @@
   "description": "A simple BattleSnake AI written in Javascript for NodeJS",
   "version": "0.0.0",
   "private": true,
+  "gypfile": true,
   "author": "Sendwithus",
   "repository": "https://github.com/sendwithus/battlesnake-node",
   "licenses": [
@@ -15,12 +16,16 @@
     "body-parser": "^1.16.1",
     "express": "^4.14.1",
     "morgan": "^1.8.1",
-    "nodemon": "^1.11.0"
+    "nan": "^2.3.3",
+    "nodemon": "^1.11.0",
+    "streaming-worker-sdk": "^0.9.3",
+    "streaming-worker" : "*",
+    "stream-array": "^1.1.2",
+    "through": "^2.3.8"
   },
   "devDependencies": {
     "foreman": "^2.0.0"
   },
-  "main": "index.js",
   "engines": {
     "node": "6.x"
   },
