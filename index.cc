@@ -18,7 +18,7 @@ using v8::Value;
 // Input arguments are passed using the
 // const FunctionCallbackInfo<Value>& args struct
 void CPPAddon(const FunctionCallbackInfo<Value>& args) {
-  // Isolate* isolate = args.GetIsolate();
+  Isolate* isolate = args.GetIsolate();
 
   // Check the number of arguments passed.
   // if (args.Length() < 1) {
@@ -47,7 +47,7 @@ void CPPAddon(const FunctionCallbackInfo<Value>& args) {
   // Set the return value (using the passed in
   // FunctionCallbackInfo<Value>&)
   // args.GetReturnValue().Set(String::NewFromUtf8(isolate, "TEST"));
-  // args.GetReturnValue().Set(String::NewFromUtf8(isolate, "world"));
+  args.GetReturnValue().Set(String::NewFromUtf8(isolate, "world"));
 }
 
 void Init(Local<Object> exports) {
