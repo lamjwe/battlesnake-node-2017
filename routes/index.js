@@ -8,7 +8,10 @@ const through = require('through');
 var addon_path = path.join(__dirname, "/../build/Release/cppaddon");
 const acc = worker(addon_path);
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
   // NOTE: Do something here to start the game
