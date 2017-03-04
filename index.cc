@@ -1,6 +1,6 @@
 // addon.cc
 #include <node.h>
-
+#include <string>
 namespace demo {
 
 using v8::Exception;
@@ -15,11 +15,11 @@ using v8::Value;
 // This is the implementation of the "add" method
 // Input arguments are passed using the
 // const FunctionCallbackInfo<Value>& args struct
-void Add(const FunctionCallbackInfo<Value>& args) {
+void CPPAddon(const FunctionCallbackInfo<Value>& args) {
   Isolate* isolate = args.GetIsolate();
 
   // Check the number of arguments passed.
-  if (args.Length() < 2) {
+  if (args.Length() < 1) {
     // Throw an Error that is passed back to JavaScript
     isolate->ThrowException(Exception::TypeError(
         String::NewFromUtf8(isolate, "Wrong number of arguments")));
@@ -27,14 +27,14 @@ void Add(const FunctionCallbackInfo<Value>& args) {
   }
 
   // Check the argument types
-  if (!args[0]->IsNumber() || !args[1]->IsNumber()) {
+  if (!args[0]->IsNumber()) {
     isolate->ThrowException(Exception::TypeError(
         String::NewFromUtf8(isolate, "Wrong arguments")));
     return;
   }
 
   // Perform the operation
-  double value = args[0]->NumberValue() + args[1]->NumberValue();
+  double value = args[0]->NumberValue();
   Local<Number> num = Number::New(isolate, value);
 
   // Set the return value (using the passed in
@@ -43,7 +43,7 @@ void Add(const FunctionCallbackInfo<Value>& args) {
 }
 
 void Init(Local<Object> exports) {
-  NODE_SET_METHOD(exports, "add", Add);
+  NODE_SET_METHOD(exports, "cppaddon", CPPAddon);
 }
 
 NODE_MODULE(addon, Init)
