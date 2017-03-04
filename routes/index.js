@@ -1,6 +1,14 @@
 var express = require('express')
 var router  = express.Router()
-const addon = require('../build/Release/addon');
+const worker = require("streaming-worker");
+const path = require("path");
+const streamify = require('stream-array');
+const through = require('through');
+
+var addon_path = path.join(__dirname, "/../build/Release/cppaddon");
+const acc = worker(addon_path);
+
+
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
   // NOTE: Do something here to start the game
