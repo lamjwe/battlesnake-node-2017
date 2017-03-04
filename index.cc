@@ -45,11 +45,13 @@ void CPPAddon(const FunctionCallbackInfo<Value>& args) {
 
   std::cout << out_input << std::endl;
 
+  std::string out_input2 = "TESTING OUTPUT";
+
   // std::cout << "OUR OUTPUT : " << out_input;
   // Set the return value (using the passed in
   // FunctionCallbackInfo<Value>&)
   // args.GetReturnValue().Set(String::NewFromUtf8(isolate, "TEST"));
-  args.GetReturnValue().Set(String::NewFromUtf8(isolate, "world"));
+  args.GetReturnValue().Set(String::NewFromUtf8(isolate, out_input2));
 }
 
 void Init(Local<Object> exports) {
