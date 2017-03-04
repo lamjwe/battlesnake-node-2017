@@ -43,8 +43,7 @@ void CPPAddon(const FunctionCallbackInfo<Value>& args) {
   v8::String::Utf8Value value(args[0]->ToString());
   std::string out_input = std::string(*value);
 
-  std::stringstream buffer;
-  buffer << " OUR OUTPUT : " << out_input << std::endl;
+  std::cout << out_input << std::endl;
 
   // std::cout << "OUR OUTPUT : " << out_input;
   // Set the return value (using the passed in
