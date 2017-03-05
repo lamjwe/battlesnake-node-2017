@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include "heuristics.h"
 namespace demo {
 
 using v8::Exception;
@@ -13,6 +14,8 @@ using v8::Number;
 using v8::Object;
 using v8::String;
 using v8::Value;
+
+enum Direction { NONE=0, UP, DOWN, RIGHT, LEFT, DIE };
 
 // This is the implementation of the "add" method
 // Input arguments are passed using the
@@ -42,13 +45,32 @@ void CPPAddon(const FunctionCallbackInfo<Value>& args) {
   // FROM http://stackoverflow.com/questions/16613828/how-to-convert-stdstring-to-v8s-localstring#16639079
   v8::String::Utf8Value value(args[0]->ToString());
   std::string out_input = std::string(*value);
+  
+  Direction d = run(out_input);
+  
+  	switch (d) {
+	case UP:
+		args.GetReturnValue().Set(String::NewFromUtf8(isolate, "up"));
+		break;
+	case DOWN:
+		args.GetReturnValue().Set(String::NewFromUtf8(isolate, "down"));
+		break;
+	case RIGHT:
+		args.GetReturnValue().Set(String::NewFromUtf8(isolate, "right"));
+		break;
+	case LEFT:
+		args.GetReturnValue().Set(String::NewFromUtf8(isolate, "left"));
+		break;
+	default:
+		args.GetReturnValue().Set(String::NewFromUtf8(isolate, "up"));
+	}
 
   std::cout << out_input << std::endl;
 
   // Set the return value (using the passed in
   // FunctionCallbackInfo<Value>&)
   // args.GetReturnValue().Set(String::NewFromUtf8(isolate, "TEST"));
-  args.GetReturnValue().Set(String::NewFromUtf8(isolate, "up"));
+ 
 }
 
 void Init(Local<Object> exports) {
