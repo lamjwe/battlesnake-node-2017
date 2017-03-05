@@ -46,7 +46,8 @@ void CPPAddon(const FunctionCallbackInfo<Value>& args) {
   v8::String::Utf8Value value(args[0]->ToString());
   std::string out_input = std::string(*value);
   
-  Direction d = (Direction)run(out_input);
+  //Direction d = (Direction)run(out_input);
+  Direction d = DOWN;
   
   	switch (d) {
 	case UP:
