@@ -83,7 +83,7 @@ router.post('/move', function (req, res) {
 
   // Response data
   var data = {
-    move: 'up', // one of: ['up','down','left','right']
+    move: addon.cppaddon(battle_snake_data), // one of: ['up','down','left','right']
     taunt: 'Outta my way, snake!', // optional, but encouraged!
   }
 
