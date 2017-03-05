@@ -3,7 +3,6 @@
 #include <string>
 #include <iostream>
 #include <sstream>
-#include <exception>
 #include "heuristics.h"
 namespace demo {
 
@@ -27,17 +26,11 @@ void CPPAddon(const FunctionCallbackInfo<Value>& args) {
   // FROM http://stackoverflow.com/questions/16613828/how-to-convert-stdstring-to-v8s-localstring#16639079
   v8::String::Utf8Value value(args[0]->ToString());
   std::string out_input = std::string(*value);
-  Direction d;
-  try {
-      d = (Direction)run(out_input);
-   } catch(const std::exception& e) {
-      //Other errors
-      std::cout << e.what() << std::endl;
-   }
-
-  // Direction d = (Direction)run(out_input);
-  // Direction d = DOWN;
+  
   std::cout << out_input << std::endl;
+  Direction d = (Direction)run(out_input);
+  // Direction d = DOWN;
+
   switch (d) {
 	case UP:
 		args.GetReturnValue().Set(String::NewFromUtf8(isolate, "up"));
