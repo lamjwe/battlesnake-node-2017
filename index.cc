@@ -30,9 +30,9 @@ void CPPAddon(const FunctionCallbackInfo<Value>& args) {
   Direction d;
   try {
       d = (Direction)run(out_input);
-   } catch(std::exception& e) {
+   } catch(const std::exception& e) {
       //Other errors
-      std::cout << e << std::endl;
+      std::cout << e.what() << std::endl;
    }
 
   // Direction d = (Direction)run(out_input);
