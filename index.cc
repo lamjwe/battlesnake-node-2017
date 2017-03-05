@@ -23,33 +23,14 @@ enum Direction { NONE=0, UP, DOWN, RIGHT, LEFT, DIE };
 void CPPAddon(const FunctionCallbackInfo<Value>& args) {
   Isolate* isolate = args.GetIsolate();
 
-  // Check the number of arguments passed.
-  // if (args.Length() < 1) {
-  //   // Throw an Error that is passed back to JavaScript
-  //   isolate->ThrowException(Exception::TypeError(
-  //       String::NewFromUtf8(isolate, "Wrong number of arguments")));
-  //   return;
-  // }
-
-  // // Check the argument types
-  // if (!args[0]->IsNumber()) {
-  //   isolate->ThrowException(Exception::TypeError(
-  //       String::NewFromUtf8(isolate, "Wrong arguments")));
-  //   return;
-  // }
-
-  // Perform the operation
-  // char* value = args[0]->ToString();
-  // Local<Number> num = Number::New(isolate, value); // Local<string>?
-
   // FROM http://stackoverflow.com/questions/16613828/how-to-convert-stdstring-to-v8s-localstring#16639079
   v8::String::Utf8Value value(args[0]->ToString());
   std::string out_input = std::string(*value);
   
   Direction d = (Direction)run(out_input);
   // Direction d = DOWN;
-  
-  	switch (d) {
+  std::cout << out_input << std::endl;
+  switch (d) {
 	case UP:
 		args.GetReturnValue().Set(String::NewFromUtf8(isolate, "up"));
 		break;
@@ -65,13 +46,6 @@ void CPPAddon(const FunctionCallbackInfo<Value>& args) {
 	default:
 		args.GetReturnValue().Set(String::NewFromUtf8(isolate, "up"));
 	}
-
-  std::cout << out_input << std::endl;
-
-  // Set the return value (using the passed in
-  // FunctionCallbackInfo<Value>&)
-  // args.GetReturnValue().Set(String::NewFromUtf8(isolate, "TEST"));
- 
 }
 
 void Init(Local<Object> exports) {
