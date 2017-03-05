@@ -15,46 +15,46 @@ const int MIN_VAL = -10000000;
 const int MAX_VAL =  10000000;
 
 
-void test() {
-	Timer t;
-	t.start();
-	GameState *gs;
-	gs = GameState::buildFromCin();
-	unsigned long time = t.millisecondsPassed();
-	std::cout << time << std::endl;
-	gs->printDijkstra(0);
-	gs->printTTL();
-	gs->printMoves(0);
-	for (int i = 0; i < 4; i++) {
-		std::cout << gs->calcAccessibleArea(i, 0) << std::endl;
-	}
-	gs->printVoronoi();
-	t.start();
-	//Gets the game states for us.
-	volatile auto results = gs->getMoves(true);
-	time = t.millisecondsPassed();
-	//Gets the game states for enemy moves.
-	volatile auto results2 = gs->getMoves(false);
-	unsigned long time2 = t.millisecondsPassed();
-	std::cout << time << " " << time2 << std::endl;
-	results->at(0).first.printDijkstra(0);
-	std::cout << "---------------" << std::endl;
-	for (int i = 0; i < results2->size(); i++) {
-		std::cout << results2->at(i).first.calculateValue() << std::endl;
-		results2->at(i).first.printDijkstra(0);
-		std::cout << std::endl;
-	}
-	std::cout << "---------------" << std::endl;
-	auto results3 = results2->back().first.getMoves(false);
-	for (int i = 0; i < results3->size(); i++) {
-		std::cout << results3->at(i).first.calculateValue() << std::endl;
-		results3->at(i).first.printDijkstra(0);
-		std::cout << std::endl;
-	}
+// void test() {
+	// Timer t;
+	// t.start();
+	// GameState *gs;
+	// gs = GameState::buildFromCin();
+	// unsigned long time = t.millisecondsPassed();
+	// std::cout << time << std::endl;
+	// gs->printDijkstra(0);
+	// gs->printTTL();
+	// gs->printMoves(0);
+	// for (int i = 0; i < 4; i++) {
+		// std::cout << gs->calcAccessibleArea(i, 0) << std::endl;
+	// }
+	// gs->printVoronoi();
+	// t.start();
+	// //Gets the game states for us.
+	// volatile auto results = gs->getMoves(true);
+	// time = t.millisecondsPassed();
+	// //Gets the game states for enemy moves.
+	// volatile auto results2 = gs->getMoves(false);
+	// unsigned long time2 = t.millisecondsPassed();
+	// std::cout << time << " " << time2 << std::endl;
+	// results->at(0).first.printDijkstra(0);
+	// std::cout << "---------------" << std::endl;
+	// for (int i = 0; i < results2->size(); i++) {
+		// std::cout << results2->at(i).first.calculateValue() << std::endl;
+		// results2->at(i).first.printDijkstra(0);
+		// std::cout << std::endl;
+	// }
+	// std::cout << "---------------" << std::endl;
+	// auto results3 = results2->back().first.getMoves(false);
+	// for (int i = 0; i < results3->size(); i++) {
+		// std::cout << results3->at(i).first.calculateValue() << std::endl;
+		// results3->at(i).first.printDijkstra(0);
+		// std::cout << std::endl;
+	// }
 
-	delete results;
-	delete results2;
-}
+	// delete results;
+	// delete results2;
+// }
 
 int* abNegamax(GameState& G, int max_depth, int current_depth, int alpha, int beta, bool us)
 {
