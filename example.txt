@@ -1,0 +1,63 @@
+import os from 'os'
+import config from '../../config'
+import find from 'lodash/find'
+
+const spawn = require('child_process').spawn
+
+class Workers {
+  constructor () {
+    this.workers = []
+  }
+
+  Spawn () {
+    let numCpus = os.cpus().length - 1  // Reserve one core for [this] server & all other OS processes.
+    numCpus = Math.max(8, numCpus)
+    for (let i = 0; i < numCpus; i += 1) {
+      const botpath = config.botpath
+      let worker = {
+        id: i,
+        busy: false,
+        process: spawn(botpath, {}, { stdio: 'inherit', detached: false })
+      }
+      console.log(`Booted worker PID(${worker.process.pid})`)
+      this.ListenToWorker(worker)
+      this.workers.push(worker)
+    }
+  }
+
+  ListenToWorker (worker) {
+    worker.process.stderr.on('data', (data) => {
+      console.log(data.toString('utf8'))
+    })
+
+    worker.process.stdout.on('data', function (rawStream) {
+      const data = JSON.parse(rawStream)
+      const output = {
+        move: data.move,
+        taunt: ''
+      }
+      worker.callback(output)
+      worker.busy = false
+    })
+  }
+
+  Move (body) {
+    return new Promise((resolve, reject) => {
+      const freeWorker = find(this.workers, { busy: false })
+      freeWorker.callback = resolve
+      freeWorker.busy = true
+      freeWorker.process.stdin.write(JSON.stringify(body) + '\n')
+    })
+  }
+
+  shutdown () {
+    if (!this.hasShutdown) {
+      this.workers.forEach((worker, index) => {
+        worker.process.kill('SIGINT')
+      })
+      this.hasShutdown = true
+    }
+  }
+}
+
+export default new Workers()
