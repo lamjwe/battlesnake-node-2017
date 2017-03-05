@@ -27,6 +27,8 @@ public:
 	int numSnakes() { return m_numSnakes; }
 	const Snake getSnake(int i) { return m_snakes[i]; }
 
+	Direction ourDirection();
+
 	void printDijkstra(int snake);
 	void printTTL();
 	void printMoves(int snake);
@@ -34,12 +36,12 @@ public:
 	void printVoronoi();
 
 	//void addSnakeTest(int snake);
-
+	Direction m_ourDirection;
+	const GameState *m_previousState;
 
 private:
 	int m_xSize = MAX_X;
 	int m_ySize = MAX_Y;
-	const GameState *m_previousState;
 
 	int m_numSnakes = MAX_SNAKES;
 	std::vector<Snake> m_snakes = std::vector<Snake>(MAX_SNAKES);

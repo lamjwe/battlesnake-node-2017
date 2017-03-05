@@ -103,11 +103,22 @@ int run(std::string input)
 {
 	GameState *gs;
 	gs = GameState::buildFromCin(input);
-	int *results = abNegamax(*gs, 2, 0, MIN_VAL, MAX_VAL, false);
+	int *results = abNegamax(*gs, 2, 0, MIN_VAL, MAX_VAL, true);
 	int d = (Direction)results[1];
 	delete gs;
 	delete results;
 	
 	return d;
+}
+
+int main() {
+	std::string input;
+	std::string line;
+	while (std::getline(std::cin, line))
+	{
+		input.append(" ");
+		input.append(line);
+	}
+	run(input);
 }
 

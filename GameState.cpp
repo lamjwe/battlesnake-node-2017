@@ -234,6 +234,13 @@ std::vector< std::pair<GameState, Direction>> *GameState::getMoves(const bool ou
 		newMoves->emplace_back(std::pair<GameState,Direction>(*this, moveList[i][0]));
 		GameState &gs = newMoves->back().first;
 		gs.moveSnakes(moveList[i]);
+		if (!ourSnake) {
+			gs.m_ourDirection = gs.m_previousState->m_ourDirection;
+			newMoves->back().second = gs.m_ourDirection;
+		}
+		else {
+			gs.m_ourDirection = moveList[i][0];
+		}
 		gs.updateSnakes();
 		for (int j = 0; j < MAX_SNAKES; j++) {
 			gs.runDijkstra(j);
