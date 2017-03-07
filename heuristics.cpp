@@ -101,6 +101,8 @@ int* abNegamax(GameState& G, int max_depth, int current_depth, int alpha, int be
 
 int run(std::string input)
 {
+	std::cout << "IN RUN" << std::endl;
+	std::cout << input << std::endl;
 	GameState *gs;
 	gs = GameState::buildFromCin(input);
 	int *results = abNegamax(*gs, 2, 0, MIN_VAL, MAX_VAL, true);
