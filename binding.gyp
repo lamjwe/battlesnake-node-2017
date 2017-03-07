@@ -3,9 +3,7 @@
     {
       "target_name": "addon",
       "sources": [ "index.cc" ],
-      "include_dirs": [
-        "<!(node -e \"require('nan')\")"
-      ],
+      "libraries": [ "./GameState.h", "./daniel_timer.h", "./heuristics.h", "./Snake.h","./misc.h", "./SnakeHeuristics.h" ]
     }
   ]
 }
