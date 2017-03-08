@@ -77,7 +77,7 @@ int* abNegamax(GameState& G, int max_depth, int current_depth, int alpha, int be
 
 	int* recursed_score_move;
 	int current_score;
-
+	std::cout << "BEFORE FOR LOOP" << std::endl;
 	for (int move = 0; move < possible_moves->size(); move++)
 	{
 		recursed_score_move = abNegamax(possible_moves->at(move).first, max_depth, current_depth + 1, -beta, -(std::max(alpha, (*best_score))), !us);
@@ -95,6 +95,7 @@ int* abNegamax(GameState& G, int max_depth, int current_depth, int alpha, int be
 			return scoreandmove;
 		}
 	}
+	std::cout << "AFTER FOR LOOP" << std::endl;
 	return scoreandmove;
 }
 
