@@ -79,7 +79,7 @@ router.post('/move', function (req, res) {
 
   console.log("SNAKE DATA TO SEND TO C++ ADDON : " + battle_snake_data.toString().replace(/,/g , " "))
 
-  console.log('This should be 3:', addon.cppaddon(battle_snake_data));
+  console.log('This should be 3:', addon.cppaddon(battle_snake_data.toString().replace(/,/g , " ")));
 
   // Response data
   var data = {
